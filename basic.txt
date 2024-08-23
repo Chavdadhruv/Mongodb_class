@@ -1,0 +1,329 @@
+1. update only 1 doc with name is N4 and age 11 where name is B5 and age is 19.
+2. update all the documents with name N4 where name is B2.
+
+C:\Users\LJENG>mongosh
+Current Mongosh Log ID: 66b5bd48a28591d284caaac4
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.10.3
+Using MongoDB:          6.0.8
+Using Mongosh:          1.10.3
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-08-09T12:24:19.057+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    88.00 KiB
+mydb     72.00 KiB
+test> use dbl1
+switched to db dbl1
+dbl1> db.student.insertOne({name:"Joe",age:20})
+{
+  acknowledged: true,
+  insertedId: ObjectId("66b5be35a28591d284caaac5")
+}
+dbl1> db.student.insertOne({name:"Doe",age:18})
+{
+  acknowledged: true,
+  insertedId: ObjectId("66b5bf55a28591d284caaac6")
+}
+dbl1> db.student.insertMany([{name:"khloe",age:21},{name:"kim",age:32},{name:"kylie",age:25},{name:"kendal",age:23}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("66b5c032a28591d284caaac7"),
+    '1': ObjectId("66b5c032a28591d284caaac8"),
+    '2': ObjectId("66b5c032a28591d284caaac9"),
+    '3': ObjectId("66b5c032a28591d284caaaca")
+  }
+}
+dbl1> db.people.insertMany([{name:"B1",age:20,gender:"F"},{name:"B2",age:21,gender:"M"},{name:"B3",age:22,gender:"M"},{name:"B2",age:22},{name:"B2",age:20,gender:"F"},{name:"B4",age:25,gender:"F"},{name:"B5",age:19,gender:"M"},{name:"B4",age:21,gender:"F"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("66b5c21ca28591d284caaacb"),
+    '1': ObjectId("66b5c21ca28591d284caaacc"),
+    '2': ObjectId("66b5c21ca28591d284caaacd"),
+    '3': ObjectId("66b5c21ca28591d284caaace"),
+    '4': ObjectId("66b5c21ca28591d284caaacf"),
+    '5': ObjectId("66b5c21ca28591d284caaad0"),
+    '6': ObjectId("66b5c21ca28591d284caaad1"),
+    '7': ObjectId("66b5c21ca28591d284caaad2")
+  }
+}
+dbl1> db.people.insertMany([{name:"B1",age:20,gender:"F"},{name:"B2",age:21,gender:"M"},{name:"B3",age:22,gender:"M"},{name:"B2",age:22,gender:"F"},{name:"B2",age:20,gender:"F"},{name:"B4",age:25,gender:"F"},{name:"B5",age:19,gender:"M"},{name:"B4",age:21,gender:"F"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("66b5c27ea28591d284caaad3"),
+    '1': ObjectId("66b5c27ea28591d284caaad4"),
+    '2': ObjectId("66b5c27ea28591d284caaad5"),
+    '3': ObjectId("66b5c27ea28591d284caaad6"),
+    '4': ObjectId("66b5c27ea28591d284caaad7"),
+    '5': ObjectId("66b5c27ea28591d284caaad8"),
+    '6': ObjectId("66b5c27ea28591d284caaad9"),
+    '7': ObjectId("66b5c27ea28591d284caaada")
+  }
+}
+dbl1> use people
+switched to db people
+people> db.people.find()
+
+people> db.people.find( )
+
+people> use dbl1
+switched to db dbl1
+dbl1> db.people.find()
+[
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad3"),
+    name: 'B1',
+    age: 20,
+    gender: 'F'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad4"),
+    name: 'B2',
+    age: 21,
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad5"),
+    name: 'B3',
+    age: 22,
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad6"),
+    name: 'B2',
+    age: 22,
+    gender: 'F'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad7"),
+    name: 'B2',
+    age: 20,
+    gender: 'F'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad8"),
+    name: 'B4',
+    age: 25,
+    gender: 'F'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad9"),
+    name: 'B5',
+    age: 19,
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaada"),
+    name: 'B4',
+    age: 21,
+    gender: 'F'
+  }
+]
+dbl1> db.people.find({name:"B2"})
+[
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad4"),
+    name: 'B2',
+    age: 21,
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad6"),
+    name: 'B2',
+    age: 22,
+    gender: 'F'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad7"),
+    name: 'B2',
+    age: 20,
+    gender: 'F'
+  }
+]
+dbl1> db.people.find({name:"B5"},{age:false})
+[
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad9"),
+    name: 'B5',
+    gender: 'M'
+  }
+]
+dbl1> db.people.findOne({name:"B4"})
+{
+  _id: ObjectId("66b5c27ea28591d284caaad8"),
+  name: 'B4',
+  age: 25,
+  gender: 'F'
+}
+dbl1> db.people.find({name:"B5"},{age:true})
+[ { _id: ObjectId("66b5c27ea28591d284caaad9"), age: 19 } ]
+dbl1> db.people.find({name:"B5"},{age:True})
+ReferenceError: True is not defined
+dbl1> db.people.find({name:"B5"},{age:true})
+[ { _id: ObjectId("66b5c27ea28591d284caaad9"), age: 19 } ]
+dbl1> db.people.find({name:"B2"}).limit(1)
+[
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad4"),
+    name: 'B2',
+    age: 21,
+    gender: 'M'
+  }
+]
+dbl1> db.people.find({name:"B2"}).limit(2)
+[
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad4"),
+    name: 'B2',
+    age: 21,
+    gender: 'M'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad6"),
+    name: 'B2',
+    age: 22,
+    gender: 'F'
+  }
+]
+dbl1> db.people.find({name:"B2"}).limit(2).skip(1)
+[
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad6"),
+    name: 'B2',
+    age: 22,
+    gender: 'F'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad7"),
+    name: 'B2',
+    age: 20,
+    gender: 'F'
+  }
+]
+dbl1> db.people.find({name:"B2"}).limit(2).skip(2)
+[
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad7"),
+    name: 'B2',
+    age: 20,
+    gender: 'F'
+  }
+]
+dbl1> db.people.find({name:"B2"}).limit(3).skip(2)
+[
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad7"),
+    name: 'B2',
+    age: 20,
+    gender: 'F'
+  }
+]
+dbl1> db.people.find({name:"B2"}).skip(1).limit(2)
+[
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad6"),
+    name: 'B2',
+    age: 22,
+    gender: 'F'
+  },
+  {
+    _id: ObjectId("66b5c27ea28591d284caaad7"),
+    name: 'B2',
+    age: 20,
+    gender: 'F'
+  }
+]
+dbl1> db.updateOne({name:"B3"},{$set{name:"C3"}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:30)
+
+> 1 | db.updateOne({name:"B3"},{$set{name:"C3"}})
+    |                               ^
+  2 |
+
+dbl1> db.updateOne({name:"B3"},{$set {name:"C3"}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:31)
+
+> 1 | db.updateOne({name:"B3"},{$set {name:"C3"}})
+    |                                ^
+  2 |
+
+dbl1> db.updateOne({name:"B3"},{$set:{name:"C3"}})
+TypeError: db.updateOne is not a function
+dbl1> db.updateOne({name:"B3"},{$set:{name:"C3"}})
+TypeError: db.updateOne is not a function
+dbl1> db.people.updateOne({name:"B3"},{$set:{name:"C3"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dbl1> db.people.updateOne({name:"B2",age:20},{$set:{name:"C2",age:11}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dbl1> db.people.updateOne({name:"B5",age:19},{$set:{name:"N4",age:11}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+dbl1> db.people.updateMany({name:"B2"},{$set:{name:"N4"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+
+
+QUESTIONS :
+
+1. display all the docs where age is >25 and <50 --> gt,lt
+
+ db.student2.find({age:{$gt:25,$lt:50}})
+
+2. display exact match of document where age is 70 --> eq
+
+ db.student2.find({age:{$eq:20}})
+
+3. display exact match of all documents other than age is 70 -->ne
+
+db.student2.find({age:{$ne:20}})
+
+4. display match any of the values in array 20,25,30 --> in
+
+ db.student2.find({age:{$in:[20,25,30]}})
+
+5. display other than match any of the value in array 47,25 -->nin
+
+ db.student2.find({age:{$nin:[47,25]}})
+
+=> $and , $or ,$not , $nor
+
+db.student2.find({$and:[{name:"A2"},{age:28}]})
+
+db.student2.find({$or:[{name:"A2"},{age:28}]})
+
+db.student2.find({age:{$not:{$lt:20}}})
+
+db.student2.find({$nor:[{name:"A1"},{age:20}]})

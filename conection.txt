@@ -1,0 +1,8 @@
+npm install mongoose
+
+mongoose for Connecting frontend and backend 
+1 connection   mg.connect(URL/database)
+2 schema       schema is require when use mongoose 
+3 model        table creation  (collection,schema)
+4 CRUD         create,read,upadate,delete
+
