@@ -6,3 +6,13 @@ mongoose for Connecting frontend and backend
 3 model        table creation  (collection,schema)
 4 CRUD         create,read,upadate,delete
 
+valdation
+enum->[male,female] only this two allowed
+required
+trim ->remove leading,trailing space
+lower case->convert in lowercase
+upper case
+
+minlength:[length,"err message"]
+maxlength:[]
+match:[]

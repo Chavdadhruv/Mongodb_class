@@ -57,7 +57,7 @@ const createDoc = async()=>{
         })
         const personData1 = new person({
             name : 'Joe',
-            age : 40,
+            age : -40,
             email : 'Joe@gmail.com',
             gender : 'MALE'
         })
